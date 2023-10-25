@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Unboxing": {
+      "commandName": "Project",
+      "workingDirectory": "$(SolutionDir)",
+      "nativeDebugging": true
+    }
+  }
+}

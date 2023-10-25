@@ -1,0 +1,10 @@
+{
+	"pixelShader": "colored.pixelshader.hlsl",
+	"vertexShader": "colored.vertexshader.hlsl",
+	"inputLayout": [
+		{
+			"format": "float4",
+			"semantic": "POSITION"
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"pixelShader": "simple.pixelshader.hlsl",
+	"vertexShader": "simple.vertexshader.hlsl",
+	"inputLayout": [
+		{
+			"format": "float4",
+			"semantic": "POSITION"
+		},
+		{
+			"format": "float2",
+			"semantic": "TEXCOORD"
+		}
+	]
+}

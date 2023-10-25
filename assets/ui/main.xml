@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<panel background-color="#ff000044"
+	       image="robot"
+	       x="200px"
+	       y="100px"
+	       width="100px"
+	       height="100px">
+		<label foreground-color="red"
+		       x="100px"
+		       y="50px"
+		       width="200px"
+		       height="50px"
+		       horizontal-align="center"
+		       vertical-align="top">
+			Hello, Igor222!!!adfsd
+		</label>
+	</panel>
+	<label foreground-color="violet"
+	       width="500px"
+	       height="50px"
+	       horizontal-align="center"
+	       vertical-align="bottom">
+		В центре 1 внимания!
+	</label>
+</root>
