@@ -13,6 +13,7 @@ internal class Node : IDisposable
 	private Node? _parent;
 	private readonly List<NodeComponent> _components = [];
 
+	public string Name { get; set; } = string.Empty;
 	public Vector2 Position { get; set; }
 	public Size2F Size { get; set; }
 	public Vector2 GlobalPosition
@@ -105,5 +106,10 @@ internal class Node : IDisposable
 	internal bool HasComponent(Type type)
 	{
 		return _components.Any(x => x.GetType() == type);
+	}
+
+	public override string? ToString()
+	{
+		return string.IsNullOrEmpty(Name) ? base.ToString() : Name;
 	}
 }

@@ -35,9 +35,7 @@ internal class RectangleNodeComponent : NodeComponent
 
 	protected override void OnInitialize()
 	{
-		Debug.Assert(_brush is null);
-
-		_brush = new(Graphics.RenderTarget, _background);
+		_brush ??= new(Graphics.RenderTarget, _background);
 	}
 
 	public override void Render()

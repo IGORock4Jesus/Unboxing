@@ -34,7 +34,8 @@ internal static class Game
 				var node = new Node()
 				{
 					Size = (size.AsVector() - new Vector2(padding * 2.0f)).AsSize(),
-					Position = position - size.AsVector() / 2.0f
+					Position = position - size.AsVector() / 2.0f,
+					Name = "Brick"
 				};
 
 				var rectangle = node.AddComponent<RectangleNodeComponent>();
@@ -49,19 +50,21 @@ internal static class Game
 
 	private static void CreateBall()
 	{
-		var position = Scene.Root.Size.AsVector() / 2.0f;
+		var position = Scene.Root.Size.AsVector() / 2.0f  + new Vector2(0.0f, Scene.Root.Size.Height / 4.0f);
 		var size = new Size2F(16.0f, 16.0f);
 
 		var node = new Node()
 		{
 			Size = size,
-			Position = position - size.AsVector() / 2.0f
+			Position = position - size.AsVector() / 2.0f,
+			Name = "Ball"
 		};
 
 		var ellipse = node.AddComponent<EllipseNodeComponent>();
 		ellipse.Color = Color.Red;
 
-		node.AddComponent<RigidBodyNodeComponent>();
+		var rigidBody = node.AddComponent<RigidBodyNodeComponent>();
+		rigidBody.IsDynamic = true;
 
 		var ball = node.AddComponent<BallNodeComponent>();
 		ball.Speed = 1000.0f;
@@ -77,7 +80,8 @@ internal static class Game
 		var node = new Node()
 		{
 			Size = size,
-			Position = position - size.AsVector() / 2.0f
+			Position = position - size.AsVector() / 2.0f,
+			Name = "Racquet"
 		};
 
 		var rectangle = node.AddComponent<RectangleNodeComponent>();

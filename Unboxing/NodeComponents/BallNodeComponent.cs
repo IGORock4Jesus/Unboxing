@@ -22,54 +22,57 @@ internal class BallNodeComponent : NodeComponent
 
 	private void RigidBody_Collision(CollisionEventArgs collision)
 	{
-		var otherPosition = collision.Other.GlobalPosition;
-		var otherSize = collision.Other.Size;
-
-		if (collision.XCollision)
+		var distance = collision.Other.GlobalPosition - collision.Node.GlobalPosition;
+		if (MathF.Abs(distance.X) < MathF.Min(collision.Node.Size.Width, collision.Other.Size.Width))
 		{
 			_direction.X = -_direction.X;
 		}
 
-
-		if (collision.YCollision)
+		if (MathF.Abs(distance.Y) < MathF.Min(collision.Node.Size.Height, collision.Other.Size.Height))
 		{
 			_direction.Y = -_direction.Y;
 		}
 	}
 
-	public override void Update(float deltaTime)
+	protected override void OnUpdate(float deltaTime)
 	{
 		UpdatePosition(deltaTime);
 	}
 
 	private void UpdatePosition(float deltaTime)
 	{
-		Node.Position += _direction * deltaTime * Speed;
+		var rigidBody = Node.GetComponent<RigidBodyNodeComponent>();
+		rigidBody.SetVelocity(_direction * deltaTime * Speed);
 
-		if (Node.Position.X < Node.Size.Width / 2.0f)
-		{
-			_direction = new Vector2(-_direction.X, _direction.Y);
-			Node.Position = new(Node.Size.Width / 2.0f, Node.Position.Y);
-		}
+		//var position = Node.Position;
+		//position += _direction * deltaTime * Speed;
 
-		if (Node.Position.Y < Node.Size.Height / 2.0f)
-		{
-			_direction = new Vector2(_direction.X, -_direction.Y);
-			Node.Position = new(Node.Position.X, Node.Size.Height / 2.0f);
-		}
+		//if (position.X < Node.Size.Width / 2.0f)
+		//{
+		//	_direction = new Vector2(-_direction.X, _direction.Y);
+		//	position = new(Node.Size.Width / 2.0f, position.Y);
+		//}
 
-		Debug.Assert(Node.Parent is not null);
+		//if (position.Y < Node.Size.Height / 2.0f)
+		//{
+		//	_direction = new Vector2(_direction.X, -_direction.Y);
+		//	position = new(position.X, Node.Size.Height / 2.0f);
+		//}
 
-		if (Node.Position.X > Node.Parent.Size.Width - Node.Size.Width / 2.0f)
-		{
-			_direction = new Vector2(-_direction.X, _direction.Y);
-			Node.Position = new(Node.Parent.Size.Width - Node.Size.Width / 2.0f, Node.Position.Y);
-		}
+		//Debug.Assert(Node.Parent is not null);
 
-		if (Node.Position.Y > Node.Parent.Size.Height - Node.Size.Height / 2.0f)
-		{
-			_direction = new Vector2(_direction.X, -_direction.Y);
-			Node.Position = new(Node.Position.X, Node.Parent.Size.Height - Node.Size.Height / 2.0f);
-		}
+		//if (position.X > Node.Parent.Size.Width - Node.Size.Width / 2.0f)
+		//{
+		//	_direction = new Vector2(-_direction.X, _direction.Y);
+		//	position = new(Node.Parent.Size.Width - Node.Size.Width / 2.0f, position.Y);
+		//}
+
+		//if (position.Y > Node.Parent.Size.Height - Node.Size.Height / 2.0f)
+		//{
+		//	_direction = new Vector2(_direction.X, -_direction.Y);
+		//	position = new(position.X, Node.Parent.Size.Height - Node.Size.Height / 2.0f);
+		//}
+
+		//rigidBody.SetPosition(position);
 	}
 }

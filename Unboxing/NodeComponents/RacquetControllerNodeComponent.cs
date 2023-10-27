@@ -21,7 +21,7 @@ internal class RacquetControllerNodeComponent : NodeComponent
 		WindowInputs.KeyPress -= WindowInputs_KeyPress;
 	}
 
-	public override void Update(float deltaTime)
+	protected override void OnUpdate(float deltaTime)
 	{
 		if (MathF.Abs(_speed) < 0.01f)
 		{
